@@ -1,4 +1,4 @@
-import * as Joi from 'joi';
+import * as Joi from "joi";
 
 const validationSchema = {
   TYPEORM_CONNECTION: Joi.string().required(),
@@ -10,12 +10,15 @@ const validationSchema = {
   TYPEORM_SYNCHRONIZE: Joi.boolean().required(),
   TYPEORM_LOGGING: Joi.boolean().required(),
   TYPEORM_ENTITIES: Joi.string().required(),
-}
+};
 
-const { value: parsedValues, error } = Joi.object(validationSchema).validate(process.env, { abortEarly: false, stripUnknown: true });
+const { value: parsedValues, error } = Joi.object(validationSchema).validate(
+  process.env,
+  { abortEarly: false, stripUnknown: true }
+);
 
 if (error) {
-  throw new Error(`Config validation error: ${error.annotate()}`)
+  throw new Error(`Config validation error: ${error.annotate()}`);
 }
 
 /**
@@ -30,7 +33,7 @@ const exposedConfig = Object.freeze({
     password: parsedValues.TYPEORM_PASSWORD as string,
     database: parsedValues.TYPEORM_DATABASE as string,
     port: parsedValues.TYPEORM_PORT as number,
-  }
+  },
 });
 
 export default exposedConfig;
