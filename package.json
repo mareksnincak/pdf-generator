@@ -28,7 +28,8 @@
     "joi": "^17.4.1",
     "pg": "^8.6.0",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.2.34"
+    "typeorm": "^0.2.34",
+    "winston": "^3.3.3"
   },
   "scripts": {
     "start": "nodemon src/index.ts",

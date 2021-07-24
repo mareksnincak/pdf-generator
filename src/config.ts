@@ -1,6 +1,9 @@
 import Joi from "joi";
 
 const validationSchema = {
+  NODE_ENV: Joi.string()
+    .valid("production", "development")
+    .default("production"),
   TYPEORM_CONNECTION: Joi.string().required(),
   TYPEORM_HOST: Joi.string().required(),
   TYPEORM_USERNAME: Joi.string().required(),
@@ -27,6 +30,7 @@ if (error) {
  * Therefore we just add correct TS assertions and don't recast values
  */
 const exposedConfig = Object.freeze({
+  env: parsedValues.NODE_ENV as string,
   typeorm: {
     connection: parsedValues.TYPEORM_CONNECTION as string,
     host: parsedValues.TYPEORM_HOST as string,

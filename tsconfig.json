@@ -13,8 +13,10 @@
     "paths": {
       "@app": ["app"],
       "@config": ["config"],
+      "@logger": ["utils/logger"],
       "@controllers/*": ["controllers/*"],
-      "@routes/*": ["routes/*"]
+      "@routes/*": ["routes/*"],
+      "@utils/*": ["utils/*"]
     }
   }
 }
