@@ -30,6 +30,8 @@ module.exports = {
         semi: true,
       },
     ],
+    quotes: "off",
+    "@typescript-eslint/quotes": ["error"],
   },
   env: {
     node: true,

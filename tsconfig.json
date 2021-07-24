@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
     "lib": ["es5", "es6"],
     "target": "es5",
     "module": "commonjs",
@@ -7,6 +8,13 @@
     "outDir": "./build",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "paths": {
+      "@app": ["app"],
+      "@config": ["config"],
+      "@controllers/*": ["controllers/*"],
+      "@routes/*": ["routes/*"]
+    }
   }
 }
