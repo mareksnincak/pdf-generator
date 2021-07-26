@@ -57,7 +57,7 @@ const validate = (
         }
       }
     } catch (error) {
-      return next(new Error(`Validation failed ${error.errors}`));
+      return next(new Error(`Request validation failed: ${error.errors}`));
     }
 
     return next();

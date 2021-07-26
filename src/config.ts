@@ -1,47 +1,54 @@
-import Joi from "joi";
+import * as yup from "yup";
 
 const validationSchema = {
-  NODE_ENV: Joi.string()
-    .valid("production", "development")
+  NODE_ENV: yup
+    .string()
+    .oneOf(["production", "development"])
     .default("production"),
-  TYPEORM_CONNECTION: Joi.string().required(),
-  TYPEORM_HOST: Joi.string().required(),
-  TYPEORM_USERNAME: Joi.string().required(),
-  TYPEORM_PASSWORD: Joi.string().required(),
-  TYPEORM_DATABASE: Joi.string().required(),
-  TYPEORM_PORT: Joi.number().required(),
-  TYPEORM_SYNCHRONIZE: Joi.boolean().required(),
-  TYPEORM_LOGGING: Joi.boolean().required(),
-  TYPEORM_ENTITIES: Joi.string().required(),
-  SERVER_PORT: Joi.number().default(3000),
+  TYPEORM_CONNECTION: yup.string().required(),
+  TYPEORM_HOST: yup.string().required(),
+  TYPEORM_USERNAME: yup.string().required(),
+  TYPEORM_PASSWORD: yup.string().required(),
+  TYPEORM_DATABASE: yup.string().required(),
+  TYPEORM_PORT: yup.number().required(),
+  TYPEORM_SYNCHRONIZE: yup.boolean().required(),
+  TYPEORM_LOGGING: yup.boolean().required(),
+  TYPEORM_ENTITIES: yup.string().required(),
+  SERVER_PORT: yup.number().default(3000),
 };
 
-const { value: parsedValues, error } = Joi.object(validationSchema).validate(
-  process.env,
-  { abortEarly: false, stripUnknown: true }
-);
-
-if (error) {
-  throw new Error(`Config validation error: ${error.annotate()}`);
+let transformedData;
+try {
+  transformedData = yup
+    .object()
+    .shape(validationSchema)
+    .validateSync(process.env, {
+      abortEarly: false,
+      stripUnknown: true,
+    });
+} catch (error) {
+  throw new Error(
+    `Config validation failed: ${JSON.stringify(error.errors, null, 4)}`
+  );
 }
 
 /**
- * Joi already casts values to specified type
+ * Yup already casts values to specified type
  * Therefore we just add correct TS assertions and don't recast values
  */
-const exposedConfig = Object.freeze({
-  env: parsedValues.NODE_ENV as string,
+const exposedConfig = {
+  env: transformedData.NODE_ENV as string,
   typeorm: {
-    connection: parsedValues.TYPEORM_CONNECTION as string,
-    host: parsedValues.TYPEORM_HOST as string,
-    username: parsedValues.TYPEORM_USERNAME as string,
-    password: parsedValues.TYPEORM_PASSWORD as string,
-    database: parsedValues.TYPEORM_DATABASE as string,
-    port: parsedValues.TYPEORM_PORT as number,
+    connection: transformedData.TYPEORM_CONNECTION as string,
+    host: transformedData.TYPEORM_HOST as string,
+    username: transformedData.TYPEORM_USERNAME as string,
+    password: transformedData.TYPEORM_PASSWORD as string,
+    database: transformedData.TYPEORM_DATABASE as string,
+    port: transformedData.TYPEORM_PORT as number,
   },
   server: {
-    port: parsedValues.SERVER_PORT as number,
+    port: transformedData.SERVER_PORT as number,
   },
-});
+} as const;
 
 export default exposedConfig;
