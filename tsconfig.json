@@ -15,8 +15,11 @@
       "@config": ["config"],
       "@logger": ["utils/logger"],
       "@controllers/*": ["controllers/*"],
+      "@ctypes/*": ["types/*"],
+      "@middlewares/*": ["middlewares/*"],
       "@routes/*": ["routes/*"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@validations/*": ["validations/*"]
     }
   }
 }
