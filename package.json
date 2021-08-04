@@ -28,6 +28,7 @@
     "pg": "^8.6.0",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.34",
+    "typeorm-extension": "^0.2.7",
     "winston": "^3.3.3",
     "yup": "^0.32.9"
   },

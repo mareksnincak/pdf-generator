@@ -16,6 +16,7 @@
       "@logger": ["utils/logger"],
       "@controllers/*": ["controllers/*"],
       "@ctypes/*": ["types/*"],
+      "@entities/*": ["entities/*"],
       "@middlewares/*": ["middlewares/*"],
       "@routes/*": ["routes/*"],
       "@utils/*": ["utils/*"],
