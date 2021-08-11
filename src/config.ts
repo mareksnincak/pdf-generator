@@ -11,8 +11,8 @@ const validationSchema = {
   TYPEORM_PASSWORD: yup.string().required(),
   TYPEORM_DATABASE: yup.string().required(),
   TYPEORM_PORT: yup.number().required(),
-  TYPEORM_SYNCHRONIZE: yup.boolean().required(),
-  TYPEORM_LOGGING: yup.boolean().required(),
+  TYPEORM_SYNCHRONIZE: yup.boolean(),
+  TYPEORM_LOGGING: yup.boolean(),
   TYPEORM_ENTITIES: yup.string().required(),
   SERVER_PORT: yup.number().default(3000),
 };

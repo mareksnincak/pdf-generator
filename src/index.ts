@@ -18,13 +18,13 @@ const setupDb = async () => {
 const run = async () => {
   await Promise.all([setupDb(), createApplication()]);
 
-  await getCustomRepository(UserRepository).createTestUser();
-  const users = await getCustomRepository(UserRepository).findByName(
-    "test",
-    "user"
-  );
+  // await getCustomRepository(UserRepository).createTestUser();
+  // const users = await getCustomRepository(UserRepository).findByName(
+  //   "test",
+  //   "user"
+  // );
 
-  console.log({ users });
+  // console.log({ users });
 };
 
 run().catch((error) => logger.error(error));
