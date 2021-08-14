@@ -6,7 +6,6 @@ import { buildConnectionOptions, createDatabase } from "typeorm-extension";
 
 import logger from "@logger";
 import createApplication from "@app";
-import { UserRepository } from "repositories/User";
 
 const setupDb = async () => {
   const connectionOptions = await buildConnectionOptions();
@@ -17,14 +16,6 @@ const setupDb = async () => {
 
 const run = async () => {
   await Promise.all([setupDb(), createApplication()]);
-
-  // await getCustomRepository(UserRepository).createTestUser();
-  // const users = await getCustomRepository(UserRepository).findByName(
-  //   "test",
-  //   "user"
-  // );
-
-  // console.log({ users });
 };
 
 run().catch((error) => logger.error(error));

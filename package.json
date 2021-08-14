@@ -10,6 +10,7 @@
     "@typescript-eslint/eslint-plugin": "^4.28.4",
     "@typescript-eslint/parser": "^4.28.4",
     "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
     "eslint": "^7.31.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-standard": "^16.0.3",
@@ -24,11 +25,13 @@
     "pretty-quick": "^3.1.1",
     "ts-node": "^10.1.0",
     "tsconfig-paths": "^3.10.1",
+    "typeorm-seeding": "^1.6.1",
     "typescript": "^4.3.5"
   },
   "dependencies": {
     "express": "^4.17.1",
     "helmet": "^4.6.0",
+    "http-status": "^1.5.0",
     "pg": "^8.6.0",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.34",
@@ -40,6 +43,6 @@
     "start": "nodemon src/index.ts",
     "prepare": "husky install",
     "prettify": "pretty-quick --staged",
-    "test": "mocha -r ts-node/register --runInBand test/**/*.ts"
+    "test": "mocha -r ts-node/register -r tsconfig-paths/register --runInBand --file test/setup.ts test/**/*.ts"
   }
 }

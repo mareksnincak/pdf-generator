@@ -1,20 +1,15 @@
 import { EntityRepository, Repository } from "typeorm";
-import { User } from "@entities/User";
+import User from "@entities/User";
 
 @EntityRepository(User)
-export class UserRepository extends Repository<User> {
-  findByName(firstName: string, lastName: string) {
-    return this.createQueryBuilder("user")
-      .where("user.firstName = :firstName", { firstName })
-      .andWhere("user.lastName = :lastName", { lastName })
-      .getMany();
+class UserRepository extends Repository<User> {
+  getById(id: string) {
+    return this.findOne(id);
   }
 
-  createTestUser() {
-    return this.save({
-      firstName: "test",
-      lastName: "user",
-      age: 30,
-    });
+  getByIdOrFail(id: string) {
+    return this.findOneOrFail(id);
   }
 }
+
+export default UserRepository;

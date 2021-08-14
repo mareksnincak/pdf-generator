@@ -4,6 +4,7 @@ services:
     environment:
       - POSTGRES_USER=test
       - POSTGRES_PASSWORD=test
+      - POSTGRES_DB=pdf-generator-test
 
   pdf-generator-test:
     build: .
@@ -11,9 +12,9 @@ services:
     environment:
       - TYPEORM_CONNECTION=postgres
       - TYPEORM_HOST=postgres
-      - TYPEORM_USERNAME=user
-      - TYPEORM_PASSWORD=password
-      - TYPEORM_DATABASE=pdf-generator
+      - TYPEORM_USERNAME=test
+      - TYPEORM_PASSWORD=test
+      - TYPEORM_DATABASE=pdf-generator-test
       - TYPEORM_PORT=5432
       - TYPEORM_ENTITIES=src/entities/**/*.ts
     volumes:
