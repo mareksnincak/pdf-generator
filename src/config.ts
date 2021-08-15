@@ -1,10 +1,10 @@
-import * as yup from "yup";
+import * as yup from 'yup';
 
 const validationSchema = {
   NODE_ENV: yup
     .string()
-    .oneOf(["production", "development"])
-    .default("production"),
+    .oneOf(['production', 'development'])
+    .default('production'),
   TYPEORM_CONNECTION: yup.string().required(),
   TYPEORM_HOST: yup.string().required(),
   TYPEORM_USERNAME: yup.string().required(),
@@ -28,7 +28,7 @@ try {
     });
 } catch (error) {
   throw new Error(
-    `Config validation failed: ${JSON.stringify(error.errors, null, 4)}`
+    `Config validation failed: ${JSON.stringify(error.errors, null, 4)}`,
   );
 }
 

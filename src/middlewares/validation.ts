@@ -1,18 +1,18 @@
-import { NextFunction, Request, Response } from "express";
-import * as yup from "yup";
+import { NextFunction, Request, Response } from 'express';
+import * as yup from 'yup';
 
 import {
   TValidationData,
   TValidationKey,
   TValidationOptions,
-} from "@ctypes/validation";
+} from '@ctypes/validation';
 
 const validationKeys: TValidationKey[] = [
-  "body",
-  "cookies",
-  "headers",
-  "params",
-  "query",
+  'body',
+  'cookies',
+  'headers',
+  'params',
+  'query',
 ];
 
 const createValidationSchema = (validationData: TValidationData) => {
@@ -32,7 +32,7 @@ const createValidationSchema = (validationData: TValidationData) => {
 
 const validate = (
   validationData: TValidationData,
-  options: TValidationOptions = {}
+  options: TValidationOptions = {},
 ) => {
   return async (req: Request, _res: Response, next: NextFunction) => {
     const validationSchema = createValidationSchema(validationData);

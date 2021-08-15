@@ -1,8 +1,8 @@
-import { expect } from "chai";
+import { expect } from 'chai';
 
-describe("This", () => {
-  describe("should", () => {
-    it("pass", () => {
+describe('This', () => {
+  describe('should', () => {
+    it('pass', () => {
       expect(1).to.equal(1);
     });
   });

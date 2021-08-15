@@ -5,7 +5,7 @@ import {
   NumberSchema,
   ObjectSchema,
   StringSchema,
-} from "yup";
+} from 'yup';
 
 export type TValueSchema =
   | BooleanSchema
@@ -16,11 +16,11 @@ export type TValueSchema =
   | ArraySchema<any>;
 
 export type TValidationKey =
-  | "body"
-  | "cookies"
-  | "headers"
-  | "params"
-  | "query";
+  | 'body'
+  | 'cookies'
+  | 'headers'
+  | 'params'
+  | 'query';
 
 export type TValidationValue = Record<string, TValueSchema>;
 

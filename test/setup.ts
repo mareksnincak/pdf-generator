@@ -1,13 +1,14 @@
-import "mocha";
-import chai from "chai";
-import chaiHttp from "chai-http";
+import 'mocha';
 import {
   tearDownDatabase,
   useRefreshDatabase,
   useSeeding,
-} from "typeorm-seeding";
-import createApplication from "@app";
-import { Server } from "http";
+} from 'typeorm-seeding';
+import { Server } from 'http';
+import chai from 'chai';
+import chaiHttp from 'chai-http';
+
+import createApplication from '@app';
 
 chai.use(chaiHttp);
 

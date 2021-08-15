@@ -1,12 +1,12 @@
-import "mocha";
-import { expect } from "chai";
-import { factory, useRefreshDatabase } from "typeorm-seeding";
-import httpStatus from "http-status";
+import 'mocha';
+import { expect } from 'chai';
+import { factory, useRefreshDatabase } from 'typeorm-seeding';
+import { httpAgent } from '@test/setup';
+import httpStatus from 'http-status';
 
-import { httpAgent } from "@test/setup";
-import User from "@entities/User";
+import User from '@entities/User';
 
-const BASE_URL = "/api/v1/user";
+const BASE_URL = '/api/v1/user';
 
 let dbUser: User;
 before(async () => {
@@ -15,8 +15,8 @@ before(async () => {
 });
 
 describe(`GET ${BASE_URL}`, () => {
-  describe("This should", () => {
-    it("return user by id", async () => {
+  describe('This should', () => {
+    it('return user by id', async () => {
       const response = await httpAgent.get(`${BASE_URL}/${dbUser.id}`);
 
       expect(response).to.have.status(httpStatus.OK);

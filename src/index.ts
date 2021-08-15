@@ -1,11 +1,11 @@
-import "@config";
-import "reflect-metadata";
+import '@config';
+import 'reflect-metadata';
 
-import { createConnection, getCustomRepository } from "typeorm";
-import { buildConnectionOptions, createDatabase } from "typeorm-extension";
+import { createConnection } from 'typeorm';
+import { buildConnectionOptions, createDatabase } from 'typeorm-extension';
 
-import logger from "@logger";
-import createApplication from "@app";
+import logger from '@logger';
+import createApplication from '@app';
 
 const setupDb = async () => {
   const connectionOptions = await buildConnectionOptions();

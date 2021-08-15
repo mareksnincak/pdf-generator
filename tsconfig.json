@@ -10,6 +10,8 @@
     "experimentalDecorators": true,
     "sourceMap": true,
     "esModuleInterop": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
     "paths": {
       "@app": ["src/app"],
       "@config": ["src/config"],

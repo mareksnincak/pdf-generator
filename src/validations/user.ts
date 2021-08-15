@@ -1,5 +1,5 @@
-import { TValidationData } from "@ctypes/validation";
-import * as yup from "yup";
+import { TValidationData } from '@ctypes/validation';
+import * as yup from 'yup';
 
 export const getUser: TValidationData = {
   params: {
