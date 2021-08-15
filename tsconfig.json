@@ -16,6 +16,7 @@
       "@controllers/*": ["src/controllers/*"],
       "@ctypes/*": ["src/types/*"],
       "@entities/*": ["src/entities/*"],
+      "@errors/*": ["src/errors/*"],
       "@logger": ["src/utils/logger"],
       "@middlewares/*": ["src/middlewares/*"],
       "@repositories/*": ["src/repositories/*"],
