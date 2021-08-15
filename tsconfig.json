@@ -15,6 +15,7 @@
     "paths": {
       "@app": ["src/app"],
       "@config": ["src/config"],
+      "@constants/*": ["src/constants/*"],
       "@controllers/*": ["src/controllers/*"],
       "@ctypes/*": ["src/types/*"],
       "@entities/*": ["src/entities/*"],

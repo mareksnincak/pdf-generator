@@ -1,22 +1,29 @@
 import AppError from '@errors/AppError';
 import logger from '@logger';
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import httpStatus from 'http-status';
 
-interface IErrorResponse {
+type TErrorResponse = {
   status: string;
   detail?: any;
-}
+};
 
 const DEFAULT_ERROR = httpStatus.INTERNAL_SERVER_ERROR;
 
-const handleErrors = (err: Error, _req: Request, res: Response) => {
-  const response: IErrorResponse = {
+const handleErrors = (
+  err: Error,
+  _req: Request,
+  res: Response,
+  _next: NextFunction,
+) => {
+  const response: TErrorResponse = {
     status: httpStatus[`${DEFAULT_ERROR}_NAME`] as string,
   };
 
   if (err instanceof AppError) {
-    logger.warn(err.message);
+    if (err.message) {
+      logger.warn(err.message);
+    }
 
     response.status = httpStatus[`${err.statusCode}_NAME`] as string;
 

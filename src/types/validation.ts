@@ -20,11 +20,17 @@ export type TValidationKey =
   | 'cookies'
   | 'headers'
   | 'params'
-  | 'query';
+  | 'query'
+  | 'file'
+  | 'files';
 
-export type TValidationValue = Record<string, TValueSchema>;
+export type TValidationValue = Record<string, TValueSchema> | any;
 
 export type TValidationData = Partial<Record<TValidationKey, TValidationValue>>;
+
+export type TValidationSchema = Partial<
+  Record<TValidationKey, ObjectSchema<any>>
+>;
 
 /**
  * @member transform - override request values by yup.transform values

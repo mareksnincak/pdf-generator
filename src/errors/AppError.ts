@@ -1,14 +1,14 @@
-interface IAppErrorParams {
-  message: string;
+type TAppErrorParams = {
+  message?: string;
   statusCode: number;
   detail?: any;
-}
+};
 
 class AppError extends Error {
   statusCode: number;
   detail?: any;
 
-  constructor({ message, statusCode, detail }: IAppErrorParams) {
+  constructor({ message, statusCode, detail }: TAppErrorParams) {
     super(message);
 
     this.statusCode = statusCode;

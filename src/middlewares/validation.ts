@@ -5,7 +5,10 @@ import {
   TValidationData,
   TValidationKey,
   TValidationOptions,
+  TValidationSchema,
 } from '@ctypes/validation';
+import AppError from '@errors/AppError';
+import httpStatus from 'http-status';
 
 const validationKeys: TValidationKey[] = [
   'body',
@@ -13,10 +16,12 @@ const validationKeys: TValidationKey[] = [
   'headers',
   'params',
   'query',
+  'file',
+  'files',
 ];
 
 const createValidationSchema = (validationData: TValidationData) => {
-  const schemaData = {};
+  const schemaData: TValidationSchema = {};
   for (const validationKey of validationKeys) {
     const validationSchemaValue = validationData[validationKey];
 
@@ -24,7 +29,11 @@ const createValidationSchema = (validationData: TValidationData) => {
       continue;
     }
 
-    schemaData[validationKey] = yup.object().shape(validationSchemaValue);
+    if (validationSchemaValue instanceof yup.ObjectSchema) {
+      schemaData[validationKey] = validationSchemaValue;
+    } else {
+      schemaData[validationKey] = yup.object().shape(validationSchemaValue);
+    }
   }
 
   return yup.object().shape(schemaData);
@@ -56,8 +65,16 @@ const validate = (
           req[validationKey as TValidationKey] = transformedValue;
         }
       }
-    } catch (error) {
-      return next(new Error(`Request validation failed: ${error.errors}`));
+    } catch (err) {
+      if (err instanceof yup.ValidationError)
+        return next(
+          new AppError({
+            statusCode: httpStatus.UNPROCESSABLE_ENTITY,
+            detail: { errors: err.errors },
+          }),
+        );
+
+      return next(err);
     }
 
     return next();

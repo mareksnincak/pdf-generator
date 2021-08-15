@@ -11,7 +11,7 @@ const createApplication = (port = config.server.port) => {
 
   app.use(helmet());
   app.use(express.json());
-  app.use(express.urlencoded());
+  app.use(express.urlencoded({ extended: true }));
 
   app.use('/api/v1', router);
 
