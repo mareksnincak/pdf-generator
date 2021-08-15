@@ -12,8 +12,8 @@ const logger = createLogger({
     format.json(),
   ),
   transports: [
-    new transports.File({ filename: 'quick-start-error.log', level: 'error' }),
-    new transports.File({ filename: 'quick-start-combined.log' }),
+    new transports.File({ filename: 'logs/error.log', level: 'error' }),
+    new transports.File({ filename: 'logs/combined.log' }),
   ],
 });
 

@@ -69,6 +69,7 @@ const validate = (
       if (err instanceof yup.ValidationError)
         return next(
           new AppError({
+            message: 'Validation error',
             statusCode: httpStatus.UNPROCESSABLE_ENTITY,
             detail: { errors: err.errors },
           }),

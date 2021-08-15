@@ -12,7 +12,7 @@ const DEFAULT_ERROR = httpStatus.INTERNAL_SERVER_ERROR;
 
 const handleErrors = (
   err: Error,
-  _req: Request,
+  req: Request,
   res: Response,
   _next: NextFunction,
 ) => {
@@ -33,7 +33,10 @@ const handleErrors = (
     return res.status(err.statusCode).send(response);
   }
 
-  logger.error(err.stack);
+  logger.error({
+    req,
+    stack: err.stack,
+  });
 
   return res.status(DEFAULT_ERROR).send(response);
 };

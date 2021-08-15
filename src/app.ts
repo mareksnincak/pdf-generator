@@ -5,6 +5,11 @@ import config from '@config';
 import errorMiddleware from '@middlewares/error';
 import logger from '@logger';
 import router from '@routes/v1/index';
+import {
+  successLogger,
+  clientErrorLogger,
+  serverErrorLogger,
+} from '@middlewares/logger';
 
 const createApplication = (port = config.server.port) => {
   const app = express();
@@ -12,6 +17,9 @@ const createApplication = (port = config.server.port) => {
   app.use(helmet());
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
+  app.use(successLogger);
+  app.use(clientErrorLogger);
+  app.use(serverErrorLogger);
 
   app.use('/api/v1', router);
 
