@@ -1,18 +1,22 @@
 import morgan from 'morgan';
 import logger from '@logger';
-import httpStatus from 'http-status';
+import {
+  isHttpError,
+  isClientHttpError,
+  isServerHttpError,
+} from '@utils/error';
 
-export const successLogger = morgan('short', {
+export const httpLogger = morgan('short', {
   stream: { write: (message) => logger.info(message) },
-  skip: (_req, res) => res.statusCode >= httpStatus.BAD_REQUEST,
+  skip: (_req, res) => isHttpError(res.statusCode),
 });
 
-export const clientErrorLogger = morgan('short', {
+export const clientHttpErrorLogger = morgan('short', {
   stream: { write: (message) => logger.warn(message) },
-  skip: (_req, res) => res.statusCode < httpStatus.BAD_REQUEST,
+  skip: (_req, res) => !isClientHttpError(res.statusCode),
 });
 
-export const serverErrorLogger = morgan('short', {
+export const serverHttpErrorLogger = morgan('short', {
   stream: { write: (message) => logger.error(message) },
-  skip: (_req, res) => res.statusCode < httpStatus.INTERNAL_SERVER_ERROR,
+  skip: (_req, res) => !isServerHttpError(res.statusCode),
 });

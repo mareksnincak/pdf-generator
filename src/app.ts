@@ -6,9 +6,9 @@ import errorMiddleware from '@middlewares/error';
 import logger from '@logger';
 import router from '@routes/v1/index';
 import {
-  successLogger,
-  clientErrorLogger,
-  serverErrorLogger,
+  httpLogger,
+  clientHttpErrorLogger,
+  serverHttpErrorLogger,
 } from '@middlewares/logger';
 
 const createApplication = (port = config.server.port) => {
@@ -17,9 +17,10 @@ const createApplication = (port = config.server.port) => {
   app.use(helmet());
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
-  app.use(successLogger);
-  app.use(clientErrorLogger);
-  app.use(serverErrorLogger);
+
+  app.use(httpLogger);
+  app.use(clientHttpErrorLogger);
+  app.use(serverHttpErrorLogger);
 
   app.use('/api/v1', router);
 
