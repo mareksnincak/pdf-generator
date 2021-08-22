@@ -1,12 +1,12 @@
 import 'mocha';
 import { expect } from 'chai';
 import { factory, useRefreshDatabase } from 'typeorm-seeding';
-import { httpAgent } from '@test/setup';
 import httpStatus from 'http-status';
 
+import { httpAgent } from '@tests/setup';
 import User from '@entities/User';
 
-const BASE_URL = '/api/v1/user';
+const BASE_URL = '/api/v1/users';
 
 let dbUser: User;
 before(async () => {

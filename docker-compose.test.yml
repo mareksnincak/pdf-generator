@@ -19,7 +19,7 @@ services:
       - TYPEORM_ENTITIES=src/entities/**/*.ts
     volumes:
       - ./src:/app/src
-      - ./test:/app/test
+      - ./tests:/app/tests
       - ./node_modules:/app/node_modules
     depends_on:
       - postgres

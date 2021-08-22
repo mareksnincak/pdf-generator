@@ -25,7 +25,7 @@
       "@repositories/*": ["src/repositories/*"],
       "@routes/*": ["src/routes/*"],
       "@src": ["src/*"],
-      "@test/*": ["test/*"],
+      "@tests/*": ["tests/*"],
       "@utils/*": ["src/utils/*"],
       "@validations/*": ["src/validations/*"]
     }

@@ -50,6 +50,6 @@
     "start": "nodemon src/index.ts",
     "prepare": "husky install",
     "prettify": "pretty-quick --staged && eslint . --ext .ts --fix",
-    "test": "mocha -r ts-node/register -r tsconfig-paths/register --runInBand --file test/setup.ts test/**/*.ts"
+    "test": "mocha -r ts-node/register -r tsconfig-paths/register --runInBand --file tests/setup.ts tests/**/*.ts"
   }
 }
