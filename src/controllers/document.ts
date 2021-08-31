@@ -1,6 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
-import { getCustomRepository } from 'typeorm';
-import DocumentRepository from '@repositories/Document';
+// import { getCustomRepository } from 'typeorm';
+
+// import DocumentRepository from '@repositories/Document';
+import DocumentHandler from '@handlers/document';
 
 export const generateDocument = async (
   req: Request,
@@ -8,12 +10,13 @@ export const generateDocument = async (
   next: NextFunction,
 ) => {
   try {
-    const { templateId, data } = req.body;
+    // const { templateId, data } = req.body;
 
-    const documentRepository = getCustomRepository(DocumentRepository);
-    const document = await documentRepository.createDocument(templateId, data);
+    // const documentRepository = getCustomRepository(DocumentRepository);
+    // const document = await documentRepository.createDocument(templateId, data);
 
-    res.send(document.toPublicJson());
+    // res.send(document.toPublicJson());
+    res.send(await DocumentHandler.generateDocument());
   } catch (err) {
     next(err);
   }

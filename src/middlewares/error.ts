@@ -33,10 +33,7 @@ const handleErrors = (
     return res.status(err.statusCode).send(response);
   }
 
-  logger.error({
-    req,
-    stack: err.stack,
-  });
+  logger.error(err);
 
   return res.status(DEFAULT_ERROR).send(response);
 };

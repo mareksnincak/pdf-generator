@@ -1,5 +1,5 @@
 services:
-  postgres:
+  postgres-test:
     image: postgres:13.3
     environment:
       - POSTGRES_USER=test
@@ -8,21 +8,21 @@ services:
 
   pdf-generator-test:
     build: .
+    cap_add:
+      - SYS_ADMIN
     entrypoint: yarn test
     environment:
       - TYPEORM_CONNECTION=postgres
-      - TYPEORM_HOST=postgres
+      - TYPEORM_HOST=postgres-test
       - TYPEORM_USERNAME=test
       - TYPEORM_PASSWORD=test
       - TYPEORM_DATABASE=pdf-generator-test
       - TYPEORM_PORT=5432
       - TYPEORM_ENTITIES=src/entities/**/*.ts
     volumes:
-      - ./src:/app/src
-      - ./tests:/app/tests
-      - ./node_modules:/app/node_modules
+      - node-modules-test:/app/node_modules
     depends_on:
-      - postgres
+      - postgres-test
 
 volumes:
-  postgres-data:
+  node-modules-test:
