@@ -1,8 +1,9 @@
 {
   "verbose": true,
-  "ignore": [],
-  "watch": ["src/**/*.ts"],
+  "ignore": [".git", "node_modules/**/node_modules"],
+  "watch": ["src/"],
   "execMap": {
-    "ts": "node --inspect=0.0.0.0:9229 --nolazy -r ts-node/register -r tsconfig-paths/register"
-  }
+    "ts": "node -r ts-node/register -r tsconfig-paths/register"
+  },
+  "ext": "ts"
 }

@@ -50,7 +50,7 @@
     "yup": "^0.32.9"
   },
   "scripts": {
-    "start": "nodemon src/index.ts",
+    "start": "nodemon --inspect=0.0.0.0:9229 src/index.ts",
     "prepare": "husky install",
     "prettify": "pretty-quick --staged && eslint . --ext .ts --fix",
     "test": "mocha -r ts-node/register -r tsconfig-paths/register --runInBand --file tests/setup.ts tests/**/*.ts"
