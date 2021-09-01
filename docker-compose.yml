@@ -21,7 +21,6 @@ services:
     volumes:
       - ./src:/app/src
       - ./uploads:/app/uploads
-      - node-modules:/app/node_modules
     depends_on:
       - postgres
 
