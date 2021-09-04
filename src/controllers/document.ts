@@ -9,8 +9,9 @@ export const generateDocument = async (
   try {
     const { templateId, data } = req.body;
 
-    const document = await DocumentHandler.generateDocument(templateId, data);
+    const document = await DocumentHandler.generatePdf(templateId, data);
 
+    res.set('Content-Type', 'application/pdf');
     res.send(document);
   } catch (err) {
     next(err);

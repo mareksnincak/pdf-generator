@@ -1,5 +1,5 @@
-import generateDocument from './generateDocument';
+import generatePdf from './generatePdf';
 
 export default {
-  generateDocument,
+  generatePdf,
 };
