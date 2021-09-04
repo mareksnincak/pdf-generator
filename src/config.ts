@@ -5,6 +5,8 @@ const validationSchema = {
     .string()
     .oneOf(['production', 'development'])
     .default('production'),
+  PUPPETEER_NUMBER_OF_INSTANCES: yup.number().default(4),
+  PUPPETEER_TIMEOUT_MS: yup.number().default(10000),
   TYPEORM_CONNECTION: yup.string().required(),
   TYPEORM_HOST: yup.string().required(),
   TYPEORM_USERNAME: yup.string().required(),
@@ -38,6 +40,10 @@ try {
  */
 const exposedConfig = {
   env: transformedData.NODE_ENV as string,
+  puppeteer: {
+    numberOfInstances: transformedData.PUPPETEER_NUMBER_OF_INSTANCES as number,
+    timeoutMs: transformedData.PUPPETEER_TIMEOUT_MS as number,
+  },
   typeorm: {
     connection: transformedData.TYPEORM_CONNECTION as string,
     host: transformedData.TYPEORM_HOST as string,

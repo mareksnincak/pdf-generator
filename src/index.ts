@@ -6,6 +6,7 @@ import { buildConnectionOptions, createDatabase } from 'typeorm-extension';
 
 import logger from '@logger';
 import createApplication from '@app';
+import { getCluster as initPuppeteerCluster } from '@handlers/puppeteer/setup';
 
 const setupDb = async () => {
   const connectionOptions = await buildConnectionOptions();
@@ -15,7 +16,8 @@ const setupDb = async () => {
 };
 
 const run = async () => {
-  await Promise.all([setupDb(), createApplication()]);
+  await Promise.all([setupDb(), initPuppeteerCluster()]);
+  createApplication();
 };
 
 run().catch((error) => logger.error(error));

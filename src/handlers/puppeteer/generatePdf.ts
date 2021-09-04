@@ -1,13 +1,7 @@
-import puppeteer from 'puppeteer';
+import { getCluster } from './setup';
 
 export default async (html: string) => {
-  const browser = await puppeteer.launch({
-    args: ['--disable-dev-shm-usage'],
-  });
-  const page = await browser.newPage();
-  await page.setContent(html);
-  const pdf = await page.pdf({ format: 'a4' });
-
-  await browser.close();
+  const cluster = await getCluster();
+  const pdf = await cluster.execute({ html });
   return pdf;
 };
