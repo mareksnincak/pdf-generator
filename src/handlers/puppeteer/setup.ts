@@ -24,7 +24,14 @@ export const getCluster = async () => {
 
   await cluster.task(async ({ page, data: { html } }) => {
     await page.setContent(html);
-    const pdf = await page.pdf({ format: 'a4' });
+
+    // TODO - we should change this when we add support for header / footer
+    const pdf = await page.pdf({
+      format: 'a4',
+      footerTemplate: undefined,
+      headerTemplate: undefined,
+      displayHeaderFooter: false,
+    });
     return pdf;
   });
 
