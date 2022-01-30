@@ -1,6 +1,6 @@
 # PDF generator
 
-API for generating PDF documents from HTML templates. Currently it is just a prototype to try various things such as puppeteer setups, therefore there are few shortcuts such as missing tests, local file template saves or typeorm auto schema generation instead of using migrations.
+API for generating PDF documents from HTML templates. Currently it is just a prototype to try various things such as puppeteer setups, therefore there are few shortcuts taken such as missing tests, local file template saves or typeorm auto schema generation instead of using migrations.
 
 Postman: https://documenter.getpostman.com/view/8331704/UVeCR8mt
 
